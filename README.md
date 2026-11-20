@@ -76,7 +76,7 @@
 </picture>
 </p>
 
-<table width="100%">
+<table width="100%" align="center">
 <tr>
 <td width="20%" align="center"><strong>TypeScript</strong><br /><sub>56% of public code</sub></td>
 <td width="20%" align="center"><strong>PHP</strong><br /><sub>18% of public code</sub></td>
@@ -103,5 +103,3 @@
 <td width="38%" valign="middle" align="right"><a href="https://github.com/rjgrl">GitHub</a></td>
 </tr>
 </table>
-
-<p align="center"><sub>Zul · recruiter-ready profile generated with <a href="https://www.gitskins.com/readme-generator">GitSkins</a></sub></p>
