@@ -23,9 +23,6 @@
         #aura-analytics { animation: aura-counter-drift 10s ease-in-out -3s infinite; }
         #aura-activity { animation: aura-drift 10s ease-in-out -1.5s infinite; }
         #aura-projects { animation: aura-counter-drift 9s ease-in-out -1s infinite; }
-        @media (prefers-reduced-motion: reduce) {
-          #aura-stats, #aura-analytics, #aura-activity, #aura-projects { animation: none !important; }
-        }
       `}</style>
       <svg width="860" height="1260" style={{ position: 'absolute', top: 0, left: 0 }}>
         <defs>
