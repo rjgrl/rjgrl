@@ -10,6 +10,23 @@
   const heading = { display: 'flex', color: '#67dff4', fontSize: 12, fontWeight: 700, letterSpacing: 4 };
   return (
     <div style={{ display: 'flex', position: 'relative', width: '100%', height: '100%', overflow: 'hidden', borderRadius: 26, border: '1px solid #29203f', background: '#070710', color: '#f8f6ff', fontFamily: 'Inter' }}>
+      <style>{`
+        @keyframes aura-drift {
+          0%, 100% { transform: translate(0px, 0px); }
+          50% { transform: translate(32px, -8px); }
+        }
+        @keyframes aura-counter-drift {
+          0%, 100% { transform: translate(0px, 0px); }
+          50% { transform: translate(-26px, 10px); }
+        }
+        #aura-stats { animation: aura-drift 22s ease-in-out infinite; }
+        #aura-analytics { animation: aura-counter-drift 26s ease-in-out infinite; }
+        #aura-activity { animation: aura-drift 28s ease-in-out infinite; }
+        #aura-projects { animation: aura-counter-drift 24s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) {
+          #aura-stats, #aura-analytics, #aura-activity, #aura-projects { animation: none !important; }
+        }
+      `}</style>
       <svg width="860" height="1260" style={{ position: 'absolute', top: 0, left: 0 }}>
         <defs>
           <radialGradient id="violet"><stop offset="0%" stopColor="#6515bd" stopOpacity="0.7"/><stop offset="100%" stopColor="#6515bd" stopOpacity="0"/></radialGradient>
@@ -19,8 +36,21 @@
         <ellipse cx="230" cy="150" rx="230" ry="105" fill="url(#violet)"/>
         <ellipse cx="115" cy="185" rx="135" ry="85" fill="url(#blue)"/>
         <ellipse cx="650" cy="170" rx="200" ry="100" fill="url(#cyan)"/>
-        <ellipse cx="445" cy="447" rx="300" ry="58" fill="url(#violet)"/>
-        <ellipse cx="695" cy="652" rx="165" ry="90" fill="url(#violet)" opacity="0.4"/>
+        <g id="aura-stats">
+          <ellipse cx="425" cy="447" rx="300" ry="58" fill="url(#violet)"/>
+        </g>
+        <g id="aura-analytics">
+          <ellipse cx="695" cy="652" rx="165" ry="90" fill="url(#violet)" opacity="0.4"/>
+          <ellipse cx="190" cy="640" rx="175" ry="75" fill="url(#cyan)" opacity="0.18"/>
+        </g>
+        <g id="aura-activity">
+          <ellipse cx="200" cy="850" rx="200" ry="80" fill="url(#violet)" opacity="0.18"/>
+          <ellipse cx="650" cy="870" rx="190" ry="70" fill="url(#cyan)" opacity="0.2"/>
+        </g>
+        <g id="aura-projects">
+          <ellipse cx="175" cy="1080" rx="200" ry="115" fill="url(#cyan)" opacity="0.22"/>
+          <ellipse cx="690" cy="1100" rx="200" ry="125" fill="url(#violet)" opacity="0.3"/>
+        </g>
         <circle cx="430" cy="150" r="128" fill="none" stroke="#6a7fbc" strokeOpacity="0.15"/>
         <path d="M30 22V12H48 M812 12H830V24 M30 276V288H48 M812 288H830V276" fill="none" stroke="#71cde6" strokeWidth="2" opacity="0.7"/>
         {Array.from({ length: 28 }, (_, i) => <circle key={i} cx={45 + (i * 193) % 770} cy={20 + (i * 137) % 1200} r={i % 3 === 0 ? 1.8 : 1} fill={accents[i % 3]} opacity={i % 4 === 0 ? 0.85 : 0.22}/>)}
@@ -64,7 +94,7 @@
       <div style={{ display: 'flex', position: 'absolute', left: 42, top: 958, width: 776, flexDirection: 'column' }}>
         <div style={heading}>PRIMARY DEPLOYMENTS</div>
         <div style={{ display: 'flex', gap: 16, marginTop: 10 }}>
-          {repos.map((repo, i) => <div key={repo.name} style={{ display: 'flex', flexDirection: 'column', width: 248, height: 192, padding: 18, border: `1px solid ${['#2e5261', '#54415f', '#60374f'][i]}`, borderRadius: 20, background: '#0a0913' }}>
+          {repos.map((repo, i) => <div key={repo.name} style={{ display: 'flex', flexDirection: 'column', width: 248, height: 192, padding: 18, border: `1px solid ${['#2e5261', '#54415f', '#60374f'][i]}`, borderRadius: 20, background: 'rgba(10,9,19,0.92)' }}>
             <div style={{ display: 'flex', fontSize: 16, fontWeight: 800, overflow: 'hidden', height: 40, wordBreak: 'break-all' }}>{repo.name.length > 22 ? repo.name.slice(0, 20) + '…' : repo.name}</div>
             <div style={{ display: 'flex', fontSize: 11, lineHeight: 1.6, color: '#b9afd2', marginTop: 6, height: 64, overflow: 'hidden' }}>{repo.description ? (repo.description.length > 95 ? repo.description.slice(0, 92) + '…' : repo.description) : 'Explore this project on GitHub.'}</div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #201a2d', paddingTop: 12, marginTop: 10, fontSize: 10 }}>
